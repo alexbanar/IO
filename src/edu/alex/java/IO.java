@@ -1,5 +1,6 @@
 package edu.alex.java;
 
+import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -20,24 +21,24 @@ public class IO
 
         while (true)
         {
-            try {
+            try
+            {
                 System.out.print(prompt);
                 String input = scan.nextLine();
                 return Integer.valueOf(input);
             }
             catch (NoSuchElementException e)//from scan.nextLine()
             {
-                System.out.println("No input, Please try again. Must be an integer number: ");
+                System.out.println("No input, Please try again. Must be an integer number");
             }
             catch (NumberFormatException e)//from Integer.valueOf(input)
             {
-                System.out.println("Bad input, Please try again. Must be an integer number: ");
+                System.out.println("Bad input, Please try again. Must be an integer number");
             }
             catch (IllegalArgumentException e)//from scan.nextLine()
             {
                 throw new RuntimeException("There is a problem with input device. The program need to exit");
             }
-
         }
     }
 
@@ -52,7 +53,7 @@ public class IO
         return result;
     }
 
-    public static int getInt(String prompt, int from)
+    public static int getInteger(String prompt, int from)
     {
         return getInteger(prompt, from, Integer.MAX_VALUE);
     }
@@ -63,18 +64,23 @@ public class IO
             prompt += ": ";
         }
 
-        while (true) {
-            try {
+        while (true)
+        {
+            try
+            {
                 System.out.print(prompt);
                 String input = scan.nextLine();
                 return Double.valueOf(input);
-            } catch (NoSuchElementException e)//from scan.nextLine()
+            }
+            catch (NoSuchElementException e)//from scan.nextLine()
             {
                 System.out.println("No input, Please try again. Must be a double number");
-            } catch (NumberFormatException e)//from Double.valueOf(input)
+            }
+            catch (NumberFormatException e)//from Double.valueOf(input)
             {
                 System.out.println("Bad input, Please try again. Must be a double number");
-            } catch (IllegalArgumentException e)//from scan.nextLine()
+            }
+            catch (IllegalArgumentException e)//from scan.nextLine()
             {
                 throw new RuntimeException("There is a problem with input device. The program need to exit");
             }
@@ -84,9 +90,12 @@ public class IO
     public static double getDouble(String prompt, double from, double to)
     {
         double result;
-        do {
+        do
+        {
             result = getDouble(prompt);
-        }while (result < from || result > to);
+        }
+        while (result < from || result > to);
+
         return result;
     }
 
@@ -101,18 +110,22 @@ public class IO
             prompt += ": ";
         }
 
-        while (true) {
+        while (true)
+        {
             try {
                 System.out.print(prompt);
                 String input = scan.nextLine();
                 return Float.valueOf(input);
-            } catch (NoSuchElementException e)//from scan.nextLine()
+            }
+            catch (NoSuchElementException e)//from scan.nextLine()
             {
                 System.out.println("No input, Please try again. Must be a float number");
-            } catch (NumberFormatException e)//from Float.valueOf(input)
+            }
+            catch (NumberFormatException e)//from Float.valueOf(input)
             {
                 System.out.println("Bad input, Please try again. Must be a float number");
-            } catch (IllegalArgumentException e)//from scan.nextLine()
+            }
+            catch (IllegalArgumentException e)//from scan.nextLine()
             {
                 throw new RuntimeException("There is a problem with input device. The program need to exit");
             }
@@ -143,7 +156,7 @@ public class IO
             prompt += ": ";
         }
 
-        System.out.println(prompt);
+        System.out.print(prompt);
         try {
             int result = scanner.nextInt();
             return result;
@@ -159,7 +172,6 @@ public class IO
         }
         catch(IllegalStateException e)
         {
-            System.out.println();
             throw new RuntimeException("There is a problem with java enviroment. The program need to exit");
         }
     }
@@ -173,12 +185,14 @@ public class IO
             prompt += ": ";
         }
 
-        System.out.println(prompt);
-        try {
+        System.out.print(prompt);
+        try
+        {
             double result = scanner.nextDouble();
             return result;
         }
-        catch (InputMismatchException e){
+        catch (InputMismatchException e)
+        {
             System.out.println("Bad input, Please try again. Must be a double number");
             return getDoubleRecursive(prompt);
         }
@@ -189,7 +203,6 @@ public class IO
         }
         catch(IllegalStateException e)
         {
-            System.out.println();
             throw new RuntimeException("There is a problem with java enviroment. The program need to exit");
         }
     }
@@ -204,11 +217,13 @@ public class IO
         }
 
         System.out.print(prompt);
-        try {
+        try
+        {
             float result = scanner.nextFloat();
             return result;
         }
-        catch (InputMismatchException e){
+        catch (InputMismatchException e)
+        {
             System.out.println("Bad input, Please try again. Must be a float number");
             return getFloatRecursive(prompt);
         }
@@ -219,12 +234,134 @@ public class IO
         }
         catch(IllegalStateException e)
         {
-            System.out.println();
             throw new RuntimeException("There is a problem with java enviroment. The program need to exit");
         }
     }
 //___________________________________________________________________________________________________________________________________________________
 
+    /**
+     * This method prints an array of integers
+     * @param arr an integer array that we want to print
+     */
+    public static void print(int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf("%4d", arr[i]);
+        }
+        System.out.println();
+    }
 
+    public static void print(int[][] arr){
+        for (int i = 0; i < arr.length; i++) {
+            print(arr[i]);
+        }
+    }
+
+
+    public static void printPretty(int[][] arr){
+        System.out.printf("%4s", "");
+
+        for (int i = 0; i < arr[0].length; i++) {
+            System.out.printf("%4d", i);
+        }
+        System.out.println();
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf("%3d|", i);
+            //print the columns
+            for (int j = 0; j < arr[i].length; j++) {
+                System.out.printf("%4d", arr[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void print(String[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf("%4s", arr[i]);
+        }
+        System.out.println();
+    }
+    public static void print(String[][] arr){
+        for (int i = 0; i < arr.length; i++) {
+            print(arr[i]);
+        }
+    }
+
+    public static void printBoard(String[] arr){
+        System.out.printf("|");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf("%4s|", arr[i]);
+        }
+        System.out.printf("\n________________\n");
+    }
+    public static void printBoard(String[][] arr){
+        System.out.printf("\n________________\n");
+        for (int i = 0; i < arr.length; i++) {
+            printBoard(arr[i]);
+        }
+    }
+
+    public static String getString(String prompt){
+        if (!prompt.endsWith(":") && !prompt.endsWith(": ")) {
+            prompt += ": ";
+        }
+        //System.out.println(message);
+        System.out.print(prompt);
+        return scan.next();
+    }
+
+    public static String getSentence(String prompt){
+        System.out.println(prompt);
+        return scan.nextLine();
+    }
+
+    public static int[] getIntArray(String prompt){
+        //ask the user for the size:
+        int n = getInteger("Enter the array size");
+        //init an array of the requested size:
+        int[] result = new int[n];
+        //loop through the array and fill it:
+        for (int i = 0; i < n; i++) {
+            result[i] = getInteger(prompt);
+        }
+        return result;
+    }
+
+    public static String[] getStringArray(String message, int size){
+        String[] result = new String[size];
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(message);
+            result[i] = scan.next();
+        }
+        return result;
+    }
+
+    public static int[][] getIntArraydbl() {
+        int size = IO.getInteger("Enter the array size", 0);
+        int[][] arr = new int[size][size];
+
+        for (int row = 0; row< arr.length; row++) {
+            for (int col = 0; col < arr[row].length; col++) {
+                String s = String.format("Enter value for %d, %d", row, col);
+                arr[row][col] = IO.getInteger(s);
+            }
+        }
+        return arr;
+    }
+
+    //input a date:
+    public static LocalDateTime getDate(String prompt){
+        int year = IO.getInteger("Enter the year", 1900, 2200);
+        int month = IO.getInteger("Enter the month", 1, 12);
+        int day = IO.getInteger("Enter the day", 1, 31);
+        return LocalDateTime.of(year, month, day, 0, 0);
+    }
+
+    public static void printLineSep(int i) {
+        for (int j = 0; j < i; j++) {
+            System.out.print("_");
+        }
+        System.out.println();
+    }
 
 }

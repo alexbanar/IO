@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
 
+        System.out.println(getInteger("Enter integer between 7 and 9: ", 7, 9));
 
         System.out.println(getIntegerRecursive("Enter integer: "));
         System.out.println(getDoubleRecursive("Enter double: "));
