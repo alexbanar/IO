@@ -176,6 +176,22 @@ public class IO
         }
     }
 
+    public static int getIntegerRecursive(String prompt, int from, int to){
+        int result;
+        do
+        {
+            result = getIntegerRecursive(prompt);
+        }
+        while (result < from || result > to);
+
+        return result;
+    }
+
+    public static int getIntegerRecursive(String prompt, int from)
+    {
+        return getIntegerRecursive(prompt, from, Integer.MAX_VALUE);
+    }
+
     public static double getDoubleRecursive(String prompt)
     {
         Scanner scanner = new Scanner(System.in);
@@ -205,6 +221,28 @@ public class IO
         {
             throw new RuntimeException("There is a problem with java enviroment. The program need to exit");
         }
+        catch (Exception e)
+        {
+            System.out.println("Bad input, Please try again. Must be a double number");
+            return getDoubleRecursive(prompt);
+        }
+    }
+
+    public static double getDoubleRecursive(String prompt, double from, double to)
+    {
+        double result;
+        do
+        {
+            result = getDoubleRecursive(prompt);
+        }
+        while (result < from || result > to);
+
+        return result;
+    }
+
+    public static Double getDoubleRecursive(String prompt, double from)
+    {
+        return getDoubleRecursive(prompt, from, Double.MAX_VALUE);
     }
 
     public static float getFloatRecursive(String prompt)
@@ -237,6 +275,22 @@ public class IO
             throw new RuntimeException("There is a problem with java enviroment. The program need to exit");
         }
     }
+
+    public static float getFloatRecursive(String prompt, float from, float to){
+        float result;
+        do {
+            result = getFloatRecursive(prompt);
+        }
+        while (result < from || result > to);
+
+        return result;
+    }
+
+    public static Float getFloatRecursive(String prompt, float from)
+    {
+        return getFloatRecursive(prompt, from, Float.MAX_VALUE);
+    }
+
 //___________________________________________________________________________________________________________________________________________________
 
     /**
