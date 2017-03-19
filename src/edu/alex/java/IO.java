@@ -71,7 +71,6 @@ public class IO
             for (String datam : data)
             {
                 writer.write(datam);
-                writer.write("\n");
             }
             return true;
         }
@@ -81,7 +80,7 @@ public class IO
         }
         return false;
     }
-
+    
      /*
     public static boolean write7(String path, ArrayList<Student> data){
             try (FileWriter writer = new FileWriter(path))
